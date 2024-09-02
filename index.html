@@ -13,12 +13,16 @@
             margin: 0;
             padding: 0;
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
         header {
             background-color: rgba(255, 255, 255, 0.8);
             color: #ff6f61;
             padding: 30px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
         }
         h1 {
             font-size: 3em;
@@ -29,7 +33,14 @@
             margin-top: 10px;
             font-weight: normal;
         }
+        .content-wrapper {
+            display: flex;
+            width: 100%;
+            max-width: 1200px;
+            margin-top: 20px;
+        }
         .content {
+            flex: 2;
             padding: 20px;
         }
         .quote {
@@ -81,16 +92,43 @@
             font-size: 2em;
             cursor: pointer;
         }
+        .music-player {
+            flex: 1;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-left: 20px;
+            max-width: 300px;
+        }
+        .music-player h3 {
+            color: #ff6f61;
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+        .music-player audio {
+            width: 100%;
+            margin-bottom: 20px;
+        }
         footer {
             background-color: rgba(255, 255, 255, 0.8);
             color: #ff6f61;
             padding: 10px;
             box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            text-align: center;
             position: fixed;
             bottom: 0;
-            width: 100%;
         }
         @media (max-width: 768px) {
+            .content-wrapper {
+                flex-direction: column;
+                align-items: center;
+            }
+            .music-player {
+                margin: 20px 0 0 0;
+                max-width: 100%;
+            }
             h1 {
                 font-size: 2.5em;
             }
@@ -112,55 +150,77 @@
         <h1>Feliz Segundo Aniversario</h1>
         <h2>A mi amada esposa</h2>
     </header>
-    <div class="content">
-        <div class="quote">
-            "El amor no se mira, se siente, y aún más cuando ella está junto a ti."
-        </div>
-        
-        <!-- Carrusel de Fotos -->
-        <div id="photo-carousel" class="carousel-container image-container">
-            <div class="carousel-slide">
-                <img src="https://via.placeholder.com/800x500" alt="Foto 1">
-                <img src="https://via.placeholder.com/800x500" alt="Foto 2">
-                <img src="https://via.placeholder.com/800x500" alt="Foto 3">
+    
+    <div class="content-wrapper">
+        <div class="content">
+            <div class="quote">
+                "El amor no se mira, se siente, y aún más cuando ella está junto a ti."
             </div>
-            <div class="carousel-controls">
-                <button class="prev">&#10094;</button>
-                <button class="next">&#10095;</button>
+
+            <!-- Carrusel de Fotos -->
+            <div id="photo-carousel" class="carousel-container image-container">
+                <div class="carousel-slide">
+                    <img src="https://via.placeholder.com/800x500" alt="Foto 1">
+                    <img src="https://via.placeholder.com/800x500" alt="Foto 2">
+                    <img src="https://via.placeholder.com/800x500" alt="Foto 3">
+                </div>
+                <div class="carousel-controls">
+                    <button class="prev">&#10094;</button>
+                    <button class="next">&#10095;</button>
+                </div>
+            </div>
+
+            <p>
+                Mi amor, han sido dos años maravillosos llenos de momentos inolvidables. 
+                Gracias por ser mi compañera, mi amiga y el amor de mi vida. 
+                Cada día a tu lado es una bendición y estoy emocionado por todos los 
+                momentos que aún nos esperan. Te amo con todo mi corazón.
+            </p>
+
+            <!-- Carrusel de Videos -->
+            <div id="video-carousel" class="carousel-container video-container">
+                <div class="carousel-slide">
+                    <video controls>
+                        <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                        Tu navegador no soporta la reproducción de video.
+                    </video>
+                    <video controls>
+                        <source src="https://www.w3schools.com/html/movie.mp4" type="video/mp4">
+                        Tu navegador no soporta la reproducción de video.
+                    </video>
+                    <video controls>
+                        <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                        Tu navegador no soporta la reproducción de video.
+                    </video>
+                </div>
+                <div class="carousel-controls">
+                    <button class="prev">&#10094;</button>
+                    <button class="next">&#10095;</button>
+                </div>
             </div>
         </div>
 
-        <p>
-            Mi amor, han sido dos años maravillosos llenos de momentos inolvidables. 
-            Gracias por ser mi compañera, mi amiga y el amor de mi vida. 
-            Cada día a tu lado es una bendición y estoy emocionado por todos los 
-            momentos que aún nos esperan. Te amo con todo mi corazón.
-        </p>
-
-        <!-- Carrusel de Videos -->
-        <div id="video-carousel" class="carousel-container video-container">
-            <div class="carousel-slide">
-                <video controls>
-                    <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-                    Tu navegador no soporta la reproducción de video.
-                </video>
-                <video controls>
-                    <source src="https://www.w3schools.com/html/movie.mp4" type="video/mp4">
-                    Tu navegador no soporta la reproducción de video.
-                </video>
-                <video controls>
-                    <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-                    Tu navegador no soporta la reproducción de video.
-                </video>
-            </div>
-            <div class="carousel-controls">
-                <button class="prev">&#10094;</button>
-                <button class="next">&#10095;</button>
-            </div>
+        <!-- Reproductor de Música -->
+        <div class="music-player">
+            <h3>Lista de Reproducción</h3>
+            <audio controls>
+                <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+                Tu navegador no soporta la reproducción de audio.
+            </audio>
+            <audio controls>
+                <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mpeg">
+                Tu navegador no soporta la reproducción de audio.
+            </audio>
+            <audio controls>
+                <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3" type="audio/mpeg">
+                Tu navegador no soporta la reproducción de audio.
+            </audio>
         </div>
     </div>
+
     <footer>
         Siempre tuyo, [Tu Nombre]
     </footer>
+    
 </body>
 </html>
