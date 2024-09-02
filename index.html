@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feliz Segundo Aniversario</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #ff6f61, #ff9a8b);
+            color: #333;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        header {
+            background-color: rgba(255, 255, 255, 0.8);
+            color: #ff6f61;
+            padding: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 3em;
+            margin: 0;
+        }
+        h2 {
+            font-size: 1.8em;
+            margin-top: 10px;
+            font-weight: normal;
+        }
+        .content {
+            padding: 20px;
+        }
+        .quote {
+            font-style: italic;
+            font-size: 1.5em;
+            margin: 20px 0;
+            color: #fff;
+        }
+        .image-container, .video-container {
+            margin: 30px 0;
+        }
+        img, video {
+            max-width: 100%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+        p {
+            font-size: 1.2em;
+            color: white;
+        }
+        .carousel-container {
+            position: relative;
+            max-width: 800px;
+            margin: auto;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .carousel-slide {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .carousel-slide img, .carousel-slide video {
+            width: 100%;
+            flex-shrink: 0;
+        }
+        .carousel-controls {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+        .carousel-controls button {
+            background-color: rgba(255, 255, 255, 0.8);
+            border: none;
+            font-size: 2em;
+            cursor: pointer;
+        }
+        footer {
+            background-color: rgba(255, 255, 255, 0.8);
+            color: #ff6f61;
+            padding: 10px;
+            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5em;
+            }
+            h2 {
+                font-size: 1.4em;
+            }
+            p {
+                font-size: 1em;
+            }
+            .quote {
+                font-size: 1.2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <script>
+        const username = prompt("Por favor, ingresa el nombre de usuario:");
+        const password = prompt("Por favor, ingresa la contraseña:");
+
+        if (username !== "Karla@2años" || password !== "07092022") {
+            alert("Usuario o contraseña incorrectos. Acceso denegado.");
+            document.body.innerHTML = "";
+        }
+
+        function setupCarousel(carouselId) {
+            const carousel = document.getElementById(carouselId);
+            const slide = carousel.querySelector('.carousel-slide');
+            const slides = carousel.querySelectorAll('.carousel-slide img, .carousel-slide video');
+            let index = 0;
+
+            carousel.querySelector('.prev').addEventListener('click', () => {
+                index = (index > 0) ? index - 1 : slides.length - 1;
+                slide.style.transform = `translateX(${-index * 100}%)`;
+            });
+
+            carousel.querySelector('.next').addEventListener('click', () => {
+                index = (index < slides.length - 1) ? index + 1 : 0;
+                slide.style.transform = `translateX(${-index * 100}%)`;
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            setupCarousel('video-carousel');
+            setupCarousel('photo-carousel');
+        });
+    </script>
+
+    <header>
+        <h1>Feliz Segundo Aniversario</h1>
+        <h2>A mi amada esposa</h2>
+    </header>
+    <div class="content">
+        <div class="quote">
+            "El amor no se mira, se siente, y aún más cuando ella está junto a ti."
+        </div>
+        
+        <!-- Carrusel de Fotos -->
+        <div id="photo-carousel" class="carousel-container image-container">
+            <div class="carousel-slide">
+                <img src="https://via.placeholder.com/800x500" alt="Foto 1">
+                <img src="https://via.placeholder.com/800x500" alt="Foto 2">
+                <img src="https://via.placeholder.com/800x500" alt="Foto 3">
+            </div>
+            <div class="carousel-controls">
+                <button class="prev">&#10094;</button>
+                <button class="next">&#10095;</button>
+            </div>
+        </div>
+
+        <p>
+            Mi amor, han sido dos años maravillosos llenos de momentos inolvidables. 
+            Gracias por ser mi compañera, mi amiga y el amor de mi vida. 
+            Cada día a tu lado es una bendición y estoy emocionado por todos los 
+            momentos que aún nos esperan. Te amo con todo mi corazón.
+        </p>
+
+        <!-- Carrusel de Videos -->
+        <div id="video-carousel" class="carousel-container video-container">
+            <div class="carousel-slide">
+                <video controls>
+                    <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                    Tu navegador no soporta la reproducción de video.
+                </video>
+                <video controls>
+                    <source src="https://www.w3schools.com/html/movie.mp4" type="video/mp4">
+                    Tu navegador no soporta la reproducción de video.
+                </video>
+                <video controls>
+                    <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                    Tu navegador no soporta la reproducción de video.
+                </video>
+            </div>
+            <div class="carousel-controls">
+                <button class="prev">&#10094;</button>
+                <button class="next">&#10095;</button>
+            </div>
+        </div>
+    </div>
+    <footer>
+        Siempre tuyo, [Tu Nombre]
+    </footer>
+</body>
+</html>
