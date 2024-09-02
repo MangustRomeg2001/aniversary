@@ -7,7 +7,8 @@
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background: linear-gradient(to right, #ff6f61, #ff9a8b);
+            background: url('https://via.placeholder.com/1920x1080') no-repeat center center fixed;
+            background-size: cover;
             color: #333;
             margin: 0;
             padding: 0;
@@ -106,37 +107,6 @@
     </style>
 </head>
 <body>
-    <script>
-        const username = prompt("Por favor, ingresa el nombre de usuario:");
-        const password = prompt("Por favor, ingresa la contraseña:");
-
-        if (username !== "Karla@2años" || password !== "07092022") {
-            alert("Usuario o contraseña incorrectos. Acceso denegado.");
-            document.body.innerHTML = "";
-        }
-
-        function setupCarousel(carouselId) {
-            const carousel = document.getElementById(carouselId);
-            const slide = carousel.querySelector('.carousel-slide');
-            const slides = carousel.querySelectorAll('.carousel-slide img, .carousel-slide video');
-            let index = 0;
-
-            carousel.querySelector('.prev').addEventListener('click', () => {
-                index = (index > 0) ? index - 1 : slides.length - 1;
-                slide.style.transform = `translateX(${-index * 100}%)`;
-            });
-
-            carousel.querySelector('.next').addEventListener('click', () => {
-                index = (index < slides.length - 1) ? index + 1 : 0;
-                slide.style.transform = `translateX(${-index * 100}%)`;
-            });
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            setupCarousel('video-carousel');
-            setupCarousel('photo-carousel');
-        });
-    </script>
 
     <header>
         <h1>Feliz Segundo Aniversario</h1>
