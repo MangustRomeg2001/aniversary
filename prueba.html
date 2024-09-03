@@ -64,6 +64,38 @@
         .image-button img:hover {
             transform: scale(1.1);  /* Efecto de agrandamiento al pasar el cursor */
         }
+
+        .touch-controls {
+            display: none;
+            justify-content: center;
+            margin-top: 20px;
+            gap: 20px;
+        }
+
+        .touch-control-button {
+            width: 60px;
+            height: 60px;
+            background-color: #444;
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 24px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .touch-control-button:active {
+            background-color: #666;
+        }
+
+        /* Mostrar controles táctiles solo en pantallas pequeñas */
+        @media (max-width: 768px) {
+            .touch-controls {
+                display: flex;
+            }
+        }
     </style>
 </head>
 <body>
@@ -71,6 +103,11 @@
         <canvas id="gameCanvas"></canvas>
         <p id="score">Puntuación: 0</p>
         <button id="pauseButton">Pausa</button> <!-- Botón de Pausa/Reanudar -->
+    </div>
+    <div class="touch-controls">
+        <button id="leftButton" class="touch-control-button">◀</button>
+        <button id="shootButton" class="touch-control-button">⬆</button>
+        <button id="rightButton" class="touch-control-button">▶</button>
     </div>
     <audio id="explosionSound" src="explosion.mp3"></audio>
 
@@ -87,8 +124,12 @@
         const canvas = document.getElementById('gameCanvas');
         const ctx = canvas.getContext('2d');
 
-        canvas.width = 400;
-        canvas.height = 600;
+        // Ajuste del tamaño del canvas según la pantalla del dispositivo
+        function adjustCanvasSize() {
+            canvas.width = window.innerWidth < 600 ? window.innerWidth * 0.9 : 400;
+            canvas.height = canvas.width * 1.5;  // Mantener la proporción 2:3
+        }
+        adjustCanvasSize();
 
         const playerImage = new Image();
         playerImage.src = 'heart.png';
@@ -228,6 +269,7 @@
         let leftPressed = false;
         let rightPressed = false;
 
+        // Eventos de teclado para computadora
         document.addEventListener('keydown', (e) => {
             if (e.key === 'ArrowLeft') {
                 leftPressed = true;
@@ -252,13 +294,23 @@
             pauseButton.textContent = isPaused ? 'Reanudar' : 'Pausa';
         });
 
+        // Controles táctiles para dispositivos móviles
+        const leftButton = document.getElementById('leftButton');
+        const rightButton = document.getElementById('rightButton');
+        const shootButton = document.getElementById('shootButton');
+
+        leftButton.addEventListener('touchstart', () => leftPressed = true);
+        leftButton.addEventListener('touchend', () => leftPressed = false);
+A
+        rightButton.addEventListener('touchstart', () => rightPressed = true);
+        rightButton.addEventListener('touchend', () => rightPressed = false);
+
+        shootButton.addEventListener('touchstart', () => shootBullet());
+
         setInterval(spawnEnemy, enemySpawnInterval);
         draw();
 
-        window.addEventListener('load', () => {
-            const scrollElement = document.querySelector('.scroll');
-            scrollElement.classList.add('unrolled');
-        });
+        window.addEventListener('resize', adjustCanvasSize);
     </script>
 </body>
 </html>
