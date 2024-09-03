@@ -4,8 +4,143 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Feliz Aniversario</title>
-    <link rel="stylesheet" href="tyles.css">
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: black;
+            font-family: 'Georgia', serif;
+            color: white;
+        }
+
+        .game-container {
+            text-align: center;
+        }
+
+        #gameCanvas {
+            background-color: #111;
+            border: 2px solid #fff;
+            display: block;
+            margin: 0 auto;
+        }
+
+        #score {
+            margin-top: 20px;
+            font-size: 24px;
+        }
+
+        #pauseButton {
+            margin-top: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #444;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .button-container {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 10px; /* Espacio entre los botones */
+        }
+
+        .image-button {
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+        }
+
+        .image-button img {
+            width: 50px;  /* Puedes ajustar el tamaño según lo necesites */
+            height: 50px;
+        }
+
+        .image-button img:hover {
+            transform: scale(1.1);  /* Efecto de agrandamiento al pasar el cursor */
+        }
+
+        .btn {
+            background-color: #ff6f61;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .btn:hover {
+            background-color: #e55b50;
+        }
+
+        .scroll-container {
+            perspective: 1000px;
+        }
+
+        .scroll {
+            width: 90%;
+            max-width: 600px;
+            background: #0e0c06;
+            border: 1px solid #d0b8a8;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transform-style: preserve-3d;
+            transition: transform 2s ease;
+            position: relative;
+            background-image: url('https://www.transparenttextures.com/patterns/purty-wood.png'); /* Optional: Add a parchment texture */
+            background-size: cover;
+        }
+
+        .scroll.unrolled {
+            transform: rotateX(0deg);
+            animation: roll-out 2s forwards;
+        }
+
+        .scroll.enrolled {
+            transform: rotateX(90deg);
+        }
+
+        .header h1 {
+            color: #c8bda6;
+            margin: 0;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .content {
+            margin: 20px;
+            line-height: 1.6;
+        }
+
+        .message {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #fff7e6;
+            border: 1px solid #d0b8a8;
+            border-radius: 5px;
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1;
+            font-size: 18px;
+        }
+
+        @keyframes roll-out {
+            from {
+                transform: rotateX(90deg);
+            }
+            to {
+                transform: rotateX(0deg);
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="scroll-container">
@@ -20,17 +155,16 @@
                 <p>Con todo mi amor,</p>
                 <p>Manuel Rojas.</p>
             </div>
-
         </div>
-        <br>
-         <!-- Botón para ir a otra página -->
-         <div class="button-container">
-            <a href="index.html">
-                <button class="image-button">
-                    <img src="heart2.png" alt="Ir a otra página">
-                </button>
-            </a>
     </div>
-    <script src="script.js"></script>
+    <br>
+    <!-- Botón para ir a otra página -->
+    <div class="button-container">
+        <a href="index.html">
+            <button class="image-button">
+                <img src="heart2.png" alt="Ir a otra página">
+            </button>
+        </a>
+    </div>
 </body>
 </html>
