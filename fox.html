@@ -6,6 +6,102 @@
     <title>Juego Estilo Frogger</title>
     <link rel="stylesheet" href="styles.css">
     <style>
+            body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #000;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        .game-container {
+            text-align: center;
+        }
+
+        #gameCanvas {
+            background-color: #111;
+            border: 2px solid #fff;
+            display: block;
+            margin: 0 auto;
+        }
+
+        #score {
+            margin-top: 20px;
+            font-size: 24px;
+        }
+
+        #pauseButton {
+            margin-top: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #444;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .touch-controls {
+            display: none;
+            justify-content: center;
+            margin-top: 20px;
+            gap: 20px;
+        }
+
+        .touch-control-button {
+            width: 60px;
+            height: 60px;
+            background-color: #444;
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 24px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .touch-control-button:active {
+            background-color: #666;
+        }
+
+        /* Mostrar controles táctiles solo en pantallas pequeñas */
+        @media (max-width: 768px) {
+            .touch-controls {
+                display: flex;
+            }
+        }
+
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .image-button {
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+        }
+
+        .image-button img {
+            width: 50px;
+            height: 50px;
+        }
+
+        .image-button img:hover {
+            transform: scale(1.1);
+        }
+
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
         body {
             margin: 0;
             display: flex;
