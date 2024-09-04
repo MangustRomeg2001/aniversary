@@ -7,6 +7,7 @@
     <style>
         body {
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
@@ -43,28 +44,6 @@
             border-radius: 5px;
         }
 
-        .button-container {
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            gap: 10px; /* Espacio entre los botones */
-        }
-
-        .image-button {
-            background-color: transparent;
-            border: none;
-            cursor: pointer;
-        }
-
-        .image-button img {
-            width: 50px;  /* Puedes ajustar el tamaño según lo necesites */
-            height: 50px;
-        }
-
-        .image-button img:hover {
-            transform: scale(1.1);  /* Efecto de agrandamiento al pasar el cursor */
-        }
-
         .touch-controls {
             display: none;
             justify-content: center;
@@ -96,6 +75,32 @@
                 display: flex;
             }
         }
+
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .image-button {
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+        }
+
+        .image-button img {
+            width: 50px;
+            height: 50px;
+        }
+
+        .image-button img:hover {
+            transform: scale(1.1);
+        }
+
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
     </style>
 </head>
 <body>
@@ -104,12 +109,12 @@
         <p id="score">Puntuación: 0</p>
         <button id="pauseButton">Pausa</button> <!-- Botón de Pausa/Reanudar -->
     </div>
+
     <div class="touch-controls">
         <button id="leftButton" class="touch-control-button">◀</button>
         <button id="shootButton" class="touch-control-button">⬆</button>
         <button id="rightButton" class="touch-control-button">▶</button>
     </div>
-    <audio id="explosionSound" src="explosion.mp3"></audio>
 
     <!-- Botón para ir a otra página -->
     <div class="button-container">
@@ -119,6 +124,8 @@
             </button>
         </a>
     </div>
+
+    <audio id="explosionSound" src="explosion.mp3"></audio>
 
     <script>
         const canvas = document.getElementById('gameCanvas');
@@ -301,7 +308,7 @@
 
         leftButton.addEventListener('touchstart', () => leftPressed = true);
         leftButton.addEventListener('touchend', () => leftPressed = false);
-A
+
         rightButton.addEventListener('touchstart', () => rightPressed = true);
         rightButton.addEventListener('touchend', () => rightPressed = false);
 
