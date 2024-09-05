@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tamagotchi</title>
+    <style>
+        body {
+            font-family: 'Press Start 2P', monospace;
+            margin: 0;
+            padding: 0;
+            background-color: #87CEEB;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            color: #333;
+        }
+
+        header {
+            background-color: #333;
+            color: #FFF;
+            padding: 1rem;
+            font-size: 1.5rem;
+            width: 100%;
+            text-align: center;
+            position: absolute;
+            top: 0;
+        }
+
+        #tamagotchi-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: calc(100vh - 150px);
+        }
+
+        #tamagotchi {
+            background-color: #f2d16b;
+            border: 8px solid #333;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            padding: 2rem;
+            width: 260px;
+            height: 380px;
+            text-align: center;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        #tama-image {
+            width: 128px;
+            height: 128px;
+            image-rendering: pixelated;
+            margin: 0 auto;
+        }
+
+        #message {
+            background-color: #fff;
+            color: #333;
+            padding: 0.5rem;
+            border-radius: 5px;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+            font-size: 12px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        #stats {
+            background-color: #FFF;
+            padding: 0.5rem;
+            border-radius: 5px;
+            margin: 1rem 0;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        #controls {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .control-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .control-button img {
+            width: 48px;
+            height: 48px;
+            image-rendering: pixelated;
+            transition: transform 0.3s ease;
+        }
+
+        .control-button img:hover {
+            transform: scale(1.2);
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 1rem;
+            width: 100%;
+            text-align: center;
+            position: absolute;
+            bottom: 0;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+        /* Button Container Styles */
+        .button-container {
+            text-align: center;
+        }
+
+        .image-button {
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+        }
+
+        .image-button img {
+            width: 50px;
+            height: 50px;
+        }
+
+        .image-button img:hover {
+            transform: scale(1.1);
+        }
+
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .btn {
+            background-color: #ff6f61;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .btn:hover {
+            background-color: #e55b50;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Tamagotchi</h1>
+    </header>
+    <br><br>
+    <main id="tamagotchi-container">
+        <div id="tamagotchi">
+            <img id="tama-image" src="tama-happy.png" alt="Tamagotchi">
+            <div id="message">¡Hola, soy tu Tamagotchi!</div>
+            <div id="stats">
+                <p>Nombre: <span id="tama-name">Conejito</span></p>
+                <p>Hambre: <span id="hunger">50</span></p>
+                <p>Felicidad: <span id="happiness">50</span></p>
+            </div>
+            <div id="controls">
+                <button class="control-button" onclick="feed()">
+                    <img src="icon-food-8bit.png" alt="Alimentar">
+                </button>
+                <button class="control-button" onclick="play()">
+                    <img src="icon-toy-8bit.png" alt="Jugar">
+                </button>
+                <button class="control-button" onclick="reset()">
+                    <img src="icon-reset-8bit.png" alt="Resetear">
+                </button>
+            </div>
+        </div>
+
+        <!-- Botón para ir a otra página -->
+        <div class="button-container">
+            <a href="index.html">
+                <button class="image-button">
+                    <img src="heart2.png" alt="Ir a otra página">
+                </button>
+            </a>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Tamagotchi 8-Bits. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        let hunger = 50;
+        let happiness = 50;
+        let tamagotchiName = prompt("¿Cómo quieres llamar a tu Tamagotchi?", "Conejito");
+
+        function updateStats() {
+            document.getElementById('hunger').textContent = hunger;
+            document.getElementById('happiness').textContent = happiness;
+            document.getElementById('tama-name').textContent = tamagotchiName;
+
+            const image = document.getElementById('tama-image');
+            const message = document.getElementById('message');
+
+            if (hunger <= 20 || happiness <= 20) {
+                image.src = 'tama-sad.png';
+                if (hunger <= 20) {
+                    message.textContent = `¡${tamagotchiName} tiene mucha hambre!`;
+                } else if (happiness <= 20) {
+                    message.textContent = `¡${tamagotchiName} está triste, juega con él!`;
+                }
+            } else if (hunger <= 40 || happiness <= 40) {
+                image.src = 'tama-neutral.png';
+                if (hunger <= 40) {
+                    message.textContent = `Podría comer algo, dice ${tamagotchiName}...`;
+                } else if (happiness <= 40) {
+                    message.textContent = `${tamagotchiName} se siente un poco aburrido...`;
+                }
+            } else {
+                image.src = 'tama-happy.png';
+                message.textContent = `¡${tamagotchiName} está feliz y contento!`;
+            }
+        }
+
+        function feed() {
+            if (hunger < 100) {
+                hunger = Math.min(hunger + 10, 100); // Asegúrate de que no pase de 100
+                happiness = Math.min(happiness + 5, 100); // Asegúrate de que no pase de 100
+                updateStats();
+            }
+        }
+
+        function play() {
+            if (happiness < 100) {
+                happiness = Math.min(happiness + 10, 100); // Asegúrate de que no pase de 100
+                hunger = Math.max(hunger - 5, 0); // Asegúrate de que no baje de 0
+                updateStats();
+            }
+        }
+
+        function reset() {
+            hunger = 50;
+            happiness = 50;
+            updateStats();
+        }
+
+        function autoUpdate() {
+            hunger = Math.max(hunger - 1, 0); // Asegúrate de que no baje de 0
+            happiness = Math.max(happiness - 1, 0); // Asegúrate de que no baje de 0
+
+            updateStats();
+        }
+
+        setInterval(autoUpdate, 5000); // Actualiza cada 5 segundos
+
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('tama-name').textContent = tamagotchiName;
+            updateStats();
+        });
+    </script>
+</body>
+</html>
