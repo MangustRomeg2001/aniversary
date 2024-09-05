@@ -33,7 +33,10 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            width: 100%;
             height: calc(100vh - 150px);
+            padding: 1rem;
+            box-sizing: border-box;
         }
 
         #tamagotchi {
@@ -41,19 +44,21 @@
             border: 8px solid #333;
             border-radius: 15px;
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-            padding: 2rem;
-            width: 260px;
-            height: 380px;
+            padding: 1rem;
+            width: 90%;
+            max-width: 400px;
+            height: auto;
             text-align: center;
-            position: relative;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            box-sizing: border-box;
         }
 
         #tama-image {
-            width: 128px;
-            height: 128px;
+            width: 80%;
+            max-width: 128px;
+            height: auto;
             image-rendering: pixelated;
             margin: 0 auto;
         }
@@ -65,7 +70,7 @@
             border-radius: 5px;
             box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
             font-size: 12px;
-            height: 50px;
+            height: auto;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -83,17 +88,21 @@
         #controls {
             display: flex;
             justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 10px;
         }
 
         .control-button {
             background: none;
             border: none;
             cursor: pointer;
+            width: 60px;
+            height: 60px;
         }
 
         .control-button img {
-            width: 48px;
-            height: 48px;
+            width: 100%;
+            height: auto;
             image-rendering: pixelated;
             transition: transform 0.3s ease;
         }
@@ -159,7 +168,6 @@
     <header>
         <h1>Tamagotchi</h1>
     </header>
-    <br><br>
     <main id="tamagotchi-container">
         <div id="tamagotchi">
             <img id="tama-image" src="tama-happy.png" alt="Tamagotchi">
@@ -193,7 +201,7 @@
     </main>
 
     <footer>
-        <p>&copy; 2024 2do aniversario te amo <3.</p>
+        <p>&copy; 2024 Tamagotchi 8-Bits. Todos los derechos reservados.</p>
     </footer>
 
     <script>
@@ -231,16 +239,16 @@
 
         function feed() {
             if (hunger < 100) {
-                hunger = Math.min(hunger + 10, 100); // Asegúrate de que no pase de 100
-                happiness = Math.min(happiness + 5, 100); // Asegúrate de que no pase de 100
+                hunger = Math.min(hunger + 10, 100);
+                happiness = Math.min(happiness + 5, 100);
                 updateStats();
             }
         }
 
         function play() {
             if (happiness < 100) {
-                happiness = Math.min(happiness + 10, 100); // Asegúrate de que no pase de 100
-                hunger = Math.max(hunger - 5, 0); // Asegúrate de que no baje de 0
+                happiness = Math.min(happiness + 10, 100);
+                hunger = Math.max(hunger - 5, 0);
                 updateStats();
             }
         }
@@ -252,13 +260,13 @@
         }
 
         function autoUpdate() {
-            hunger = Math.max(hunger - 1, 0); // Asegúrate de que no baje de 0
-            happiness = Math.max(happiness - 1, 0); // Asegúrate de que no baje de 0
+            hunger = Math.max(hunger - 1, 0);
+            happiness = Math.max(happiness - 1, 0);
 
             updateStats();
         }
 
-        setInterval(autoUpdate, 5000); // Actualiza cada 5 segundos
+        setInterval(autoUpdate, 5000);
 
         document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('tama-name').textContent = tamagotchiName;
